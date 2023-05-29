@@ -1,0 +1,29 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+.wrapper {
+  margin: 10px;
+  display: grid;
+  grid-template-columns: 310px auto 310px;
+  grid-template-rows: repeat(3, 100px);
+  gap: 1em;
+  grid-template-areas:
+    "todos habits rewards"
+    "todos habits rewards"
+    "todos habits rewards";
+}
+
+.todos {
+  grid-area: todos;
+}
+.rewards {
+  grid-area: rewards;
+}
+.habits {
+  grid-area: habits;
+}
+// .XP {
+//   color: white;
+// }

@@ -1,0 +1,44 @@
+* {
+  font-family: sans-serif;
+  margin: 0;
+}
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 120px;
+  padding: 10px;
+}
+p {
+  text-align: right;
+  margin-bottom: 4px;
+  font-size: 16px;
+  span {
+    background-color: rgb(0, 74, 135);
+    color: white;
+    padding: 4px;
+  }
+}
+
+.hero {
+  border: 1px solid rgb(119, 119, 119);
+  width: auto;
+}
+.hero-name {
+  text-align: center;
+  background-color: rgb(0, 74, 135);
+  color: white;
+  padding: 4px;
+  font-size: 16px;
+}
+
+.heroes {
+  display: grid;
+  grid-template-columns: repeat(7, auto);
+}
+.locked {
+  background-color: rgba(36, 36, 36, 0.516);
+  img {
+    filter: brightness(0.05);
+  }
+}
