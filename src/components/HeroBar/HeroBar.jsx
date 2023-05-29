@@ -11,6 +11,7 @@ export default function HeroBar() {
   const dispatch = useDispatch();
   const currentXP = useSelector(curXP);
   const heroData = useSelector(allHeroData);
+
   return (
     <div>
       <div className="heroes">

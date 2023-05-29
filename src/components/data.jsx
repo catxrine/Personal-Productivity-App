@@ -24,7 +24,7 @@ export const heroesData = [
     levelNeeded: 20,
     locked: true,
     current: false,
-    XP: 30000,
+    XP: 3000,
     id: nanoid(),
   },
   {

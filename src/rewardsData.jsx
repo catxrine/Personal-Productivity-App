@@ -2,16 +2,16 @@ import { nanoid } from "@reduxjs/toolkit";
 
 export const rewardsData = [
   {
-    description: "Complete 5 tasks",
-    needed: 5,
+    description: "Complete 2 tasks",
+    needed: 2,
     completed: false,
     image: "icons8-ok-100.png",
     XP: 100,
     id: nanoid(),
   },
   {
-    description: "Complete 15 tasks",
-    needed: 15,
+    description: "Complete 5 tasks",
+    needed: 5,
     completed: false,
     image: "icons8-ok-100.png",
     XP: 300,

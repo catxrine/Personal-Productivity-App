@@ -5,12 +5,13 @@ import { addTask, doneTask, deleteTask } from "./todosSlice";
 import { nanoid } from "@reduxjs/toolkit";
 import { AddXP } from "../../XP/XPSlice";
 import { useState } from "react";
+import { achievedReward } from "../rewards/rewardsSlice";
 
 export default function Todos() {
   const [inputData, setInputData] = useState("");
   const dispatch = useDispatch();
   const allTasks = useSelector(tasks);
-  console.log(allTasks);
+
   return (
     <div className="todos-container">
       <h2 className="label">To-dos</h2>
@@ -43,12 +44,14 @@ export default function Todos() {
               <img src="checklist.png" />
               <div className="description">
                 <h3>{task.title}</h3>
-                <h5>{task.XP}</h5>
+                <h5>+{task.XP}XP</h5>
               </div>
               <button
                 onClick={() => {
+                  // search for the bug here
                   dispatch(AddXP(task.XP));
                   dispatch(doneTask(task.id));
+                  dispatch(achievedReward(task));
                 }}
               >
                 DONE

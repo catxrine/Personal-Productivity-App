@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 import { nanoid } from "@reduxjs/toolkit";
 
 const initialState = {
-  completedTasks: 0,
   todos: [
     {
       title: "Go to the gym",
@@ -52,8 +51,6 @@ const todosSlice = createSlice({
     },
     doneTask: (state, action) => {
       state.todos = state.todos.filter((task) => task.id != action.payload);
-      state.completedTasks += 1;
-      console.log(state.completedTasks);
     },
     deleteTask: (state, action) => {
       state.todos = state.todos.filter((task) => task.id != action.payload);
