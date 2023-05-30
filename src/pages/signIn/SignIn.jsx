@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { addUser } from "../login/loginSlice";
 import { useDispatch } from "react-redux";
+import { nanoid } from "@reduxjs/toolkit";
 
 export default function SignIn() {
   const navigate = useNavigate();
@@ -23,7 +23,14 @@ export default function SignIn() {
 
         <button
           onClick={() => {
-            dispatch(addUser({ username: username, password: password }));
+            dispatch(
+              addUser({
+                username: username,
+                password: password,
+                id: nanoid(),
+                userInfo: [{ currentXP: 0, tasks: [] }],
+              })
+            );
             navigate("/");
           }}
         >

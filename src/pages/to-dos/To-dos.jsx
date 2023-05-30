@@ -6,13 +6,18 @@ import { nanoid } from "@reduxjs/toolkit";
 import { AddXP } from "../../XP/XPSlice";
 import { useState } from "react";
 import { achievedReward } from "../rewards/rewardsSlice";
+import { currentUser } from "../login/loginSlice";
+import { usersTodos } from "./todosSlice";
 
 export default function Todos() {
   const [inputData, setInputData] = useState("");
   const [show, setShow] = useState(false);
   const [XP, setXP] = useState(0);
+  const currUser = useSelector(currentUser);
   const dispatch = useDispatch();
   const allTasks = useSelector(tasks);
+
+  dispatch(usersTodos(currUser.userInfo[0].tasks));
 
   return (
     <div className="todos-container">
