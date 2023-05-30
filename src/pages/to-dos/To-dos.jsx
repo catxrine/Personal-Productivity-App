@@ -9,12 +9,14 @@ import { achievedReward } from "../rewards/rewardsSlice";
 
 export default function Todos() {
   const [inputData, setInputData] = useState("");
+  const [show, setShow] = useState(false);
+  const [XP, setXP] = useState(0);
   const dispatch = useDispatch();
   const allTasks = useSelector(tasks);
 
   return (
     <div className="todos-container">
-      <h2 className="label">To-dos</h2>
+      <h2 className="label">To-dos </h2>
 
       <input
         value={inputData}
@@ -36,8 +38,8 @@ export default function Todos() {
       >
         Add
       </button>
-
-      {allTasks?.map((task) => {
+      {show && <p className="earnedXP">+{XP}</p>}
+      {allTasks.map((task) => {
         return (
           <div key={nanoid()}>
             <div className="task">
@@ -52,6 +54,11 @@ export default function Todos() {
                   dispatch(AddXP(task.XP));
                   dispatch(doneTask(task.id));
                   dispatch(achievedReward(task));
+                  setXP(task.XP);
+                  setShow(true);
+                  setTimeout(() => {
+                    setShow(false);
+                  }, 1000);
                 }}
               >
                 DONE

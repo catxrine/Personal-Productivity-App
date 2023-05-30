@@ -31,7 +31,7 @@ export default function HeroBar() {
                   </h3>
 
                   <img src={hero.body} alt="" />
-                  <p>
+                  <p className="level">
                     <span>level {hero.levelNeeded}</span>
                   </p>
                 </div>

@@ -1,0 +1,20 @@
+.calendar-container {
+  box-shadow: 0px 1px 2px 0px black;
+  height: 550%;
+  text-align: center;
+  border-radius: 5px;
+
+  background-color: #1b2c52;
+
+  h2 {
+    color: white;
+    text-align: center;
+    margin-top: 35px;
+    font-family: "Press Start 2P", cursive;
+  }
+  .calendar {
+    background-color: rgb(255, 255, 255);
+
+    margin-top: 35px;
+  }
+}
