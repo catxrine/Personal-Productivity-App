@@ -10,9 +10,9 @@ const heroBarSlice = createSlice({
   initialState,
   reducers: {
     wonHero: (state, action) => {
-      const el = state.heroData.find((hero) => hero.id === action.payload.id);
-      if (el) {
-        el.locked = false;
+      const hero = state.heroData.find((hero) => hero.id === action.payload.id);
+      if (hero) {
+        hero.locked = false;
       }
     },
   },

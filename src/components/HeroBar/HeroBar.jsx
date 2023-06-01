@@ -30,7 +30,7 @@ export default function HeroBar() {
                     {hero.locked && "-" + hero.XP + "XP"}
                   </h3>
 
-                  <img src={hero.body} alt="" />
+                  <img src={hero.image} alt="" />
                   <p className="level">
                     <span>level {hero.levelNeeded}</span>
                   </p>

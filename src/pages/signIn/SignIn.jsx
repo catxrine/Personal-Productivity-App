@@ -3,6 +3,7 @@ import { useState } from "react";
 import { addUser } from "../login/loginSlice";
 import { useDispatch } from "react-redux";
 import { nanoid } from "@reduxjs/toolkit";
+import "./signIn.scss";
 
 export default function SignIn() {
   const navigate = useNavigate();
@@ -12,21 +13,23 @@ export default function SignIn() {
 
   return (
     <div>
-      <div className="login-container">
-        <h2>Get your tasks done, while having fun.</h2>
+      <div className="signIn-container">
+        <h2>Create an account</h2>
 
-        <label>Username</label>
-        <input onChange={(e) => setUsername(e.target.value)} type="text" />
+        <div className="inputs">
+          <label>Username</label>
+          <input onChange={(e) => setUsername(e.target.value)} type="text" />
 
-        <label>Password</label>
-        <input onChange={(e) => setPassword(e.target.value)} type="text" />
+          <label>Password</label>
+          <input onChange={(e) => setPassword(e.target.value)} type="text" />
+        </div>
 
         <button
           onClick={() => {
             dispatch(
               addUser({
-                username: username,
-                password: password,
+                username,
+                password,
                 id: nanoid(),
                 userInfo: [{ currentXP: 0, tasks: [] }],
               })

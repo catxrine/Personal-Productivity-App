@@ -1,13 +1,11 @@
 import "./to-dos.scss";
 import { useSelector, useDispatch } from "react-redux";
-import { tasks } from "./todosSlice";
-import { addTask, doneTask, deleteTask } from "./todosSlice";
+import { addTask, doneTask, deleteTask, tasks } from "./todosSlice";
 import { nanoid } from "@reduxjs/toolkit";
 import { AddXP } from "../../XP/XPSlice";
 import { useState } from "react";
 import { achievedReward } from "../rewards/rewardsSlice";
 import { currentUser } from "../login/loginSlice";
-import { usersTodos } from "./todosSlice";
 
 export default function Todos() {
   const [inputData, setInputData] = useState("");
@@ -17,12 +15,9 @@ export default function Todos() {
   const dispatch = useDispatch();
   const allTasks = useSelector(tasks);
 
-  dispatch(usersTodos(currUser.userInfo[0].tasks));
-
   return (
     <div className="todos-container">
       <h2 className="label">To-dos </h2>
-
       <input
         value={inputData}
         type="text"
@@ -43,8 +38,10 @@ export default function Todos() {
       >
         Add
       </button>
+
       {show && <p className="earnedXP">+{XP}</p>}
-      {allTasks.map((task) => {
+
+      {allTasks?.map((task) => {
         return (
           <div key={nanoid()}>
             <div className="task">
@@ -55,11 +52,11 @@ export default function Todos() {
               </div>
               <button
                 onClick={() => {
-                  // search for the bug here
                   dispatch(AddXP(task.XP));
                   dispatch(doneTask(task.id));
                   dispatch(achievedReward(task));
                   setXP(task.XP);
+
                   setShow(true);
                   setTimeout(() => {
                     setShow(false);
@@ -68,6 +65,7 @@ export default function Todos() {
               >
                 DONE
               </button>
+
               <button onClick={() => dispatch(deleteTask(task.id))}>
                 DELETE
               </button>

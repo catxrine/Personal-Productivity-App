@@ -2,7 +2,7 @@ import { nanoid } from "@reduxjs/toolkit";
 export const heroesData = [
   {
     character: "Bug",
-    body: "death.png",
+    image: "death.png",
     levelNeeded: 0,
     locked: false,
     current: true,
@@ -11,7 +11,7 @@ export const heroesData = [
   },
   {
     character: "Big Bug",
-    body: "cute-ninja.png",
+    image: "cute-ninja.png",
     levelNeeded: 10,
     locked: true,
     current: false,
@@ -20,7 +20,7 @@ export const heroesData = [
   },
   {
     character: "Bigger bug",
-    body: "green-ninja.png",
+    image: "green-ninja.png",
     levelNeeded: 20,
     locked: true,
     current: false,
@@ -29,7 +29,7 @@ export const heroesData = [
   },
   {
     character: "Random Name",
-    body: "red-ninja.png",
+    image: "red-ninja.png",
     levelNeeded: 35,
     locked: true,
     current: false,
@@ -38,7 +38,7 @@ export const heroesData = [
   },
   {
     character: "Random Name",
-    body: "ninja.png",
+    image: "ninja.png",
     levelNeeded: 50,
     locked: true,
     current: false,
@@ -47,7 +47,7 @@ export const heroesData = [
   },
   {
     character: "Random Name",
-    body: "ninja-levelUp.png",
+    image: "ninja-levelUp.png",
     levelNeeded: 70,
     locked: true,
     current: false,
@@ -56,7 +56,7 @@ export const heroesData = [
   },
   {
     character: "Master Fu",
-    body: "smoke-bomb.png",
+    image: "smoke-bomb.png",
     levelNeeded: 90,
     locked: true,
     current: false,
