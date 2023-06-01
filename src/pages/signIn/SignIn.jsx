@@ -28,10 +28,10 @@ export default function SignIn() {
           onClick={() => {
             dispatch(
               addUser({
-                username,
-                password,
+                username: username,
+                password: password,
                 id: nanoid(),
-                userInfo: [{ currentXP: 0, tasks: [] }],
+                userInfo: { currentXP: 0, tasks: [] },
               })
             );
             navigate("/");

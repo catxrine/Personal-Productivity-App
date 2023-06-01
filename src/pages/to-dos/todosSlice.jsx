@@ -1,45 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { nanoid } from "@reduxjs/toolkit";
 
 const initialState = {
-  todos: [
-    // {
-    //   title: "Go to the gym",
-    //   XP: 100,
-    //   id: nanoid(),
-    //   completed: false,
-    // },
-    // {
-    //   title: "Do your homework",
-    //   XP: 200,
-    //   id: nanoid(),
-    //   completed: false,
-    // },
-    // {
-    //   title: "Clean your room",
-    //   XP: 300,
-    //   id: nanoid(),
-    //   completed: false,
-    // },
-    // {
-    //   title: "Read",
-    //   XP: 100,
-    //   id: nanoid(),
-    //   completed: false,
-    // },
-    // {
-    //   title: "Work",
-    //   XP: 200,
-    //   id: nanoid(),
-    //   completed: false,
-    // },
-    // {
-    //   title: "Another task",
-    //   XP: 100,
-    //   id: nanoid(),
-    //   completed: false,
-    // },
-  ],
+  todos: [],
 };
 
 const todosSlice = createSlice({
@@ -47,6 +9,9 @@ const todosSlice = createSlice({
   initialState,
   reducers: {
     addTask: (state, action) => {
+      if (!state.todos) {
+        state.todos = [];
+      }
       state.todos.push(action.payload);
     },
     doneTask: (state, action) => {

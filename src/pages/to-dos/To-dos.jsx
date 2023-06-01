@@ -1,19 +1,30 @@
 import "./to-dos.scss";
 import { useSelector, useDispatch } from "react-redux";
-import { addTask, doneTask, deleteTask, tasks } from "./todosSlice";
+import { addTask, doneTask, deleteTask, tasks, usersTodos } from "./todosSlice";
 import { nanoid } from "@reduxjs/toolkit";
 import { AddXP } from "../../XP/XPSlice";
 import { useState } from "react";
 import { achievedReward } from "../rewards/rewardsSlice";
+// import { currentUser } from "../login/loginSlice";
 import { currentUser } from "../login/loginSlice";
 
 export default function Todos() {
   const [inputData, setInputData] = useState("");
   const [show, setShow] = useState(false);
   const [XP, setXP] = useState(0);
-  const currUser = useSelector(currentUser);
   const dispatch = useDispatch();
   const allTasks = useSelector(tasks);
+  const currUser = useSelector(currentUser);
+
+  // console.log(currUser.userInfo[0].tasks);
+
+  // function saveUserToLocalStorage(data) {
+  //   let users = [];
+  //   users = JSON.parse(localStorage.getItem("usersData")) || [];
+  //   users.push(data);
+  //   localStorage.setItem("usersData", JSON.stringify(users));
+  //   return users;
+  // }
 
   return (
     <div className="todos-container">

@@ -11,12 +11,16 @@ import { usersTodos } from "../to-dos/todosSlice";
 export default function Login() {
   const dispatch = useDispatch();
   const checkLogin = useSelector(canLogIn);
+  const navigate = useNavigate();
+
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
+  const [warningShowUp, setWarningShowUp] = useState(false);
+
   const currUser = useSelector(currentUser);
-  const allTasks = currUser.userInfo?.tasks;
-  dispatch(usersTodos(allTasks));
-  const navigate = useNavigate();
+  // const allTasks = currUser.userInfo[0]?.tasks;
+  // dispatch(usersTodos(allTasks));
+  // console.log(allTasks);
 
   return (
     <div className="login">
@@ -36,13 +40,18 @@ export default function Login() {
             dispatch(checkForUser({ username, password }));
             if (checkLogin) {
               navigate("/tasks");
-              console.log(allTasks);
+              setPassword("");
+              setUsername("");
             }
+            setWarningShowUp(true);
+            setTimeout(() => {
+              setWarningShowUp(false);
+            }, 1000);
           }}
         >
           Login
         </button>
-
+        {/* see what you may or can do oabout it, the code is really messy and you have bugs all over there */}
         <Link className="create-acc" to="/signIn">
           <p>Don't have an accout? Create one!</p>
         </Link>
@@ -50,6 +59,9 @@ export default function Login() {
         <Link className="stay-as-guest" to="/tasks">
           <p>Stay as a guest.</p>
         </Link>
+        {warningShowUp && (
+          <p className="warning">Wrong password or username!</p>
+        )}
       </div>
     </div>
   );
