@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { tasks, usersTodos } from "./todosSlice";
 import { nanoid } from "@reduxjs/toolkit";
 import { useState } from "react";
-import { achievedReward } from "../rewards/rewardsSlice";
+// import { achievedReward } from "../rewards/rewardsSlice";
 import { currentUser, addTodos, removeTask } from "../login/loginSlice";
 import { addAchievedReward } from "../login/loginSlice";
 
@@ -54,7 +54,7 @@ export default function Todos() {
               </div>
               <button
                 onClick={() => {
-                  dispatch(achievedReward(task));
+                  // dispatch(achievedReward(task));
                   dispatch(addAchievedReward(task.XP));
 
                   setXP(task.XP);

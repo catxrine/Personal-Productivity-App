@@ -4,6 +4,7 @@ import { addUser } from "../login/loginSlice";
 import { useDispatch } from "react-redux";
 import { nanoid } from "@reduxjs/toolkit";
 import "./signIn.scss";
+import { rewardsData } from "../../rewardsData";
 
 export default function SignIn() {
   const navigate = useNavigate();
@@ -38,6 +39,7 @@ export default function SignIn() {
                     achievedRewards: [],
                     completed: 0,
                     tasks: [],
+                    allRewards: rewardsData,
                   },
                 })
               );

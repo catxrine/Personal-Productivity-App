@@ -2,16 +2,16 @@ import { Outlet } from "react-router-dom";
 import "./hero-bar.scss";
 import { useSelector } from "react-redux";
 import { nanoid } from "@reduxjs/toolkit";
-import { curXP } from "../../XP/XPSlice";
 import { allHeroData } from "./heroBarSlice";
 import { wonHero } from "./heroBarSlice";
 import { useDispatch } from "react-redux";
+import { currentUser } from "../../pages/login/loginSlice";
 
 export default function HeroBar() {
   const dispatch = useDispatch();
-  const currentXP = useSelector(curXP);
   const heroData = useSelector(allHeroData);
-
+  const currUser = useSelector(currentUser);
+  const currentXP = currUser?.userInfo?.currentXP || 0;
   return (
     <div>
       <div className="heroes">

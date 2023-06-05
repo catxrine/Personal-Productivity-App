@@ -1,7 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { users } from "../../users";
-import { current } from "@reduxjs/toolkit";
-import { rewardsData } from "../../rewardsData";
 
 export function saveUserToLocalStorage(data) {
   let users = [];
@@ -18,7 +16,6 @@ const initialState = {
   users: saveUserToLocalStorage(users),
   canLogIn: false,
   currentUser: "",
-  allRewards: rewardsData,
 };
 
 const usersSlice = createSlice({
@@ -30,7 +27,6 @@ const usersSlice = createSlice({
         state.users.push(action.payload);
         saveUserToLocalStorage(action.payload);
       }
-      console.log(current(state.users));
     },
     checkForUser: (state, action) => {
       state.users?.map((user) => {
@@ -80,15 +76,16 @@ const usersSlice = createSlice({
     addAchievedReward: (state, action) => {
       state.currentUser.userInfo.currentXP += action.payload;
       state.currentUser.userInfo.completed += 1;
-      state.allRewards.forEach((reward) => {
+      state.currentUser.userInfo.allRewards.map((reward) => {
         if (state.currentUser.userInfo.completed >= reward.needed) {
           reward.completed = true;
           state.currentUser.userInfo.achievedRewards?.push(reward);
         }
       });
-      state.allRewards = state.allRewards.filter((reward) => {
-        return reward.completed !== true;
-      });
+      state.currentUser.userInfo.allRewards =
+        state.currentUser.userInfo.allRewards.filter(
+          (reward) => reward.completed !== true
+        );
       state.currentUser.userInfo.achievedRewards?.forEach((reward) => {
         state.currentUser.userInfo.currentXP += reward.XP;
       });
@@ -99,6 +96,7 @@ const usersSlice = createSlice({
           user.userInfo.completed = state.currentUser.userInfo.completed;
           user.userInfo.achievedRewards =
             state.currentUser.userInfo.achievedRewards;
+          user.userInfo.allRewards = state.currentUser.userInfo.allRewards;
           localStorage.setItem("usersData", JSON.stringify(state.users));
         }
       });
