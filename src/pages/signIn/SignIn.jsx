@@ -23,7 +23,10 @@ export default function SignIn() {
           <input onChange={(e) => setUsername(e.target.value)} type="text" />
 
           <label>Password</label>
-          <input onChange={(e) => setPassword(e.target.value)} type="text" />
+          <input
+            onChange={(e) => setPassword(e.target.value)}
+            type="password"
+          />
         </div>
 
         <button
