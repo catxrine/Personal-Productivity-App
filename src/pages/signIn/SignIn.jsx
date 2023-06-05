@@ -10,6 +10,7 @@ export default function SignIn() {
   const dispatch = useDispatch();
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
+  const [showWarning, setShowWarning] = useState(false);
 
   return (
     <div>
@@ -26,19 +27,34 @@ export default function SignIn() {
 
         <button
           onClick={() => {
-            dispatch(
-              addUser({
-                username: username,
-                password: password,
-                id: nanoid(),
-                userInfo: { currentXP: 0, tasks: [] },
-              })
-            );
-            navigate("/");
+            if (username && password) {
+              dispatch(
+                addUser({
+                  username: username,
+                  password: password,
+                  id: nanoid(),
+                  userInfo: {
+                    currentXP: 0,
+                    achievedRewards: [],
+                    completed: 0,
+                    tasks: [],
+                  },
+                })
+              );
+              navigate("/");
+            } else {
+              setShowWarning(true);
+              setTimeout(() => {
+                setShowWarning(false);
+              }, 1000);
+            }
           }}
         >
           Sign in
         </button>
+        {showWarning && (
+          <p className="warning">Please, enter your username and password!</p>
+        )}
       </div>
     </div>
   );

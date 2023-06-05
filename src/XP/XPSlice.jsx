@@ -9,12 +9,9 @@ const XPSlice = createSlice({
   name: "currentXp",
   initialState,
   reducers: {
-    AddXP: (state, action) => {
-      state.currentXP += action.payload;
-    },
-    AddAchievdReward: (state, action) => {
+    addAchievdReward: (state, action) => {
       state.achievedRewards = state.achievedRewards.filter((reward) => {
-        state.currentXP += reward.XP;
+        state.currentXP = state.currentXP + reward.XP;
         return reward.id !== action.payload.id;
       });
       state.achievedRewards.push(action.payload);
@@ -24,4 +21,4 @@ const XPSlice = createSlice({
 
 export default XPSlice.reducer;
 export const curXP = (state) => state.currentXP.currentXP;
-export const { AddXP, AddAchievdReward } = XPSlice.actions;
+export const { addAchievdReward } = XPSlice.actions;

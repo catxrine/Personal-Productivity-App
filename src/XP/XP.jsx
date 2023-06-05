@@ -1,12 +1,12 @@
 import { useSelector } from "react-redux";
-import { curXP } from "./XPSlice";
+import { currentUser } from "../pages/login/loginSlice";
 import "./xp.scss";
 
-export default function XP() {
-  const currentXP = useSelector(curXP);
+export default function Xp() {
+  const currUser = useSelector(currentUser);
   return (
     <div className="xp">
-      <p>Current XP:{currentXP}</p>
+      <p>Current XP:{currUser.userInfo?.currentXP}</p>
     </div>
   );
 }

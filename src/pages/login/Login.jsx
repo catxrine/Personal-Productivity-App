@@ -5,23 +5,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { canLogIn } from "./loginSlice";
 import { useNavigate } from "react-router-dom";
-import { currentUser } from "../login/loginSlice";
-import { usersTodos } from "../to-dos/todosSlice";
+// import { currentUser } from "../login/loginSlice";
 
 export default function Login() {
   const dispatch = useDispatch();
   const checkLogin = useSelector(canLogIn);
   const navigate = useNavigate();
 
-  const [username, setUsername] = useState();
-  const [password, setPassword] = useState();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [warningShowUp, setWarningShowUp] = useState(false);
 
-  const currUser = useSelector(currentUser);
-  // const allTasks = currUser.userInfo[0]?.tasks;
-  // dispatch(usersTodos(allTasks));
-  // console.log(allTasks);
-
+  // const currUser = useSelector(currentUser);
+  // console.log(currUser);
   return (
     <div className="login">
       <div className="login-container">
@@ -38,22 +34,21 @@ export default function Login() {
         <button
           onClick={() => {
             dispatch(checkForUser({ username, password }));
+
             if (checkLogin) {
               navigate("/tasks");
-              setPassword("");
-              setUsername("");
+            } else {
+              setWarningShowUp(true);
+              setTimeout(() => {
+                setWarningShowUp(false);
+              }, 1000);
             }
-            setWarningShowUp(true);
-            setTimeout(() => {
-              setWarningShowUp(false);
-            }, 1000);
           }}
         >
           Login
         </button>
-        {/* see what you may or can do oabout it, the code is really messy and you have bugs all over there */}
         <Link className="create-acc" to="/signIn">
-          <p>Don't have an accout? Create one!</p>
+          <p>{"Don't"} have an accout? Create one!</p>
         </Link>
 
         <Link className="stay-as-guest" to="/tasks">

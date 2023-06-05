@@ -2,7 +2,7 @@ import "./rewards.scss";
 import { nanoid } from "@reduxjs/toolkit";
 import { rewards } from "./rewardsSlice";
 import { useSelector } from "react-redux";
-import { AddAchievdReward } from "../../XP/XPSlice";
+import { addAchievdReward } from "../../XP/XPSlice";
 import { useDispatch } from "react-redux";
 import { completedRewards } from "./rewardsSlice";
 
@@ -11,7 +11,7 @@ export default function Rewards() {
   const allRewards = useSelector(rewards);
   const completed = useSelector(completedRewards);
   completed.forEach((reward) => {
-    dispatch(AddAchievdReward(reward));
+    dispatch(addAchievdReward(reward));
   });
 
   return (

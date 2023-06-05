@@ -1,30 +1,22 @@
 import "./to-dos.scss";
 import { useSelector, useDispatch } from "react-redux";
-import { addTask, doneTask, deleteTask, tasks, usersTodos } from "./todosSlice";
+import { tasks, usersTodos } from "./todosSlice";
 import { nanoid } from "@reduxjs/toolkit";
-import { AddXP } from "../../XP/XPSlice";
 import { useState } from "react";
 import { achievedReward } from "../rewards/rewardsSlice";
-// import { currentUser } from "../login/loginSlice";
-import { currentUser } from "../login/loginSlice";
+import { currentUser, addTodos, removeTask } from "../login/loginSlice";
+import { addAchievedReward } from "../login/loginSlice";
 
 export default function Todos() {
-  const [inputData, setInputData] = useState("");
-  const [show, setShow] = useState(false);
-  const [XP, setXP] = useState(0);
   const dispatch = useDispatch();
   const allTasks = useSelector(tasks);
   const currUser = useSelector(currentUser);
 
-  // console.log(currUser.userInfo[0].tasks);
+  const [inputData, setInputData] = useState("");
+  const [show, setShow] = useState(false);
+  const [XP, setXP] = useState(0);
 
-  // function saveUserToLocalStorage(data) {
-  //   let users = [];
-  //   users = JSON.parse(localStorage.getItem("usersData")) || [];
-  //   users.push(data);
-  //   localStorage.setItem("usersData", JSON.stringify(users));
-  //   return users;
-  // }
+  dispatch(usersTodos(currUser.userInfo?.tasks || []));
 
   return (
     <div className="todos-container">
@@ -37,14 +29,13 @@ export default function Todos() {
       <button
         onClick={() => {
           dispatch(
-            addTask({
+            addTodos({
               title: inputData,
               XP: 100,
               id: nanoid(),
               completed: false,
             })
           );
-          setInputData("");
         }}
       >
         Add
@@ -63,11 +54,11 @@ export default function Todos() {
               </div>
               <button
                 onClick={() => {
-                  dispatch(AddXP(task.XP));
-                  dispatch(doneTask(task.id));
                   dispatch(achievedReward(task));
-                  setXP(task.XP);
+                  dispatch(addAchievedReward(task.XP));
 
+                  setXP(task.XP);
+                  dispatch(removeTask(task.id));
                   setShow(true);
                   setTimeout(() => {
                     setShow(false);
@@ -77,7 +68,7 @@ export default function Todos() {
                 DONE
               </button>
 
-              <button onClick={() => dispatch(deleteTask(task.id))}>
+              <button onClick={() => dispatch(removeTask(task.id))}>
                 DELETE
               </button>
             </div>
