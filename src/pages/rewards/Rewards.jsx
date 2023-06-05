@@ -1,14 +1,25 @@
 import "./rewards.scss";
 import { nanoid } from "@reduxjs/toolkit";
 import { currentUser } from "../login/loginSlice";
-import { useSelector } from "react-redux";
-
+import { useSelector, useDispatch } from "react-redux";
+import { exitProfile } from "../login/loginSlice";
+import { useNavigate } from "react-router-dom";
 export default function Rewards() {
   const currUser = useSelector(currentUser);
   const allRewards = currUser?.userInfo?.allRewards;
-
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   return (
     <div className="rewards-container">
+      <button
+        onClick={() => {
+          dispatch(exitProfile());
+          navigate("/");
+        }}
+      >
+        exit
+      </button>
+
       <h2 className="label">Rewards</h2>
       {allRewards?.map((reward) => {
         return (

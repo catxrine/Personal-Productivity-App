@@ -14,7 +14,7 @@ export function saveUserToLocalStorage(data) {
 const initialState = {
   users: saveUserToLocalStorage(users),
   canLogIn: false,
-  currentUser: "",
+  currentUser: JSON.parse(localStorage.getItem("currUser")) || "",
 };
 
 const usersSlice = createSlice({
@@ -35,6 +35,8 @@ const usersSlice = createSlice({
         ) {
           state.canLogIn = true;
           state.currentUser = user;
+
+          localStorage.setItem("currUser", JSON.stringify(user));
         }
       });
     },
@@ -46,7 +48,9 @@ const usersSlice = createSlice({
       state.users.map((user) => {
         if (user.id === state.currentUser.id) {
           user.userInfo.tasks = state.currentUser.userInfo.tasks;
+
           localStorage.setItem("usersData", JSON.stringify(state.users)) || [];
+          localStorage.setItem("currUser", JSON.stringify(user));
         }
       });
     },
@@ -55,7 +59,9 @@ const usersSlice = createSlice({
       state.users.map((user) => {
         if (user.id === currentUser.id) {
           user.currentXP = state.currentUser.userInfo.currentXP;
+
           localStorage.setItem("usersData", JSON.stringify(state.users)) || [];
+          localStorage.setItem("currUser", JSON.stringify(user));
         }
       });
     },
@@ -67,7 +73,9 @@ const usersSlice = createSlice({
       state.users.map((user) => {
         if (user.id === state.currentUser.id) {
           user.userInfo.tasks = state.currentUser.userInfo.tasks;
+
           localStorage.setItem("usersData", JSON.stringify(state.users)) || [];
+          localStorage.setItem("currUser", JSON.stringify(user));
         }
       });
     },
@@ -97,9 +105,15 @@ const usersSlice = createSlice({
           user.userInfo.achievedRewards =
             state.currentUser.userInfo.achievedRewards;
           user.userInfo.allRewards = state.currentUser.userInfo.allRewards;
+
+          localStorage.setItem("currUser", JSON.stringify(user));
           localStorage.setItem("usersData", JSON.stringify(state.users)) || [];
         }
       });
+    },
+    exitProfile: (state) => {
+      state.currentUser = "";
+      console.log(state.currentUser);
     },
   },
 });
@@ -112,6 +126,7 @@ export const {
   removeTask,
   addXPtoUser,
   addAchievedReward,
+  exitProfile,
 } = usersSlice.actions;
 export const allUsers = (state) => state.users.users;
 export const canLogIn = (state) => state.users.canLogIn;

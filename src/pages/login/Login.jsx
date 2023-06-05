@@ -13,7 +13,6 @@ export default function Login() {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [warningShowUp, setWarningShowUp] = useState(false);
 
   return (
     <div className="login">
@@ -43,9 +42,6 @@ export default function Login() {
         <Link className="stay-as-guest" to="/tasks">
           <p>Stay as a guest.</p>
         </Link>
-        {warningShowUp && (
-          <p className="warning">Wrong password or username!</p>
-        )}
       </div>
     </div>
   );

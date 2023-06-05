@@ -3,7 +3,6 @@ import Rewards from "../../pages/rewards/Rewards";
 import Calendar from "../../pages/calendar/Calendar";
 import Todos from "../../pages/to-dos/To-dos";
 import Xp from "../../XP/XP";
-
 import "./layout.scss";
 
 export default function Layout() {
@@ -13,6 +12,7 @@ export default function Layout() {
         <HeroBar className="hero-bar" />
       </div>
       <Xp className="XP" />
+
       <div className="wrapper">
         <Rewards className="rewards" />
         <Calendar className="calendar" />
