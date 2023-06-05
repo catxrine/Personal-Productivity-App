@@ -1,20 +1,11 @@
 import "./rewards.scss";
 import { nanoid } from "@reduxjs/toolkit";
-// import { rewards } from "./rewardsSlice";
 import { currentUser } from "../login/loginSlice";
 import { useSelector } from "react-redux";
-// import { addAchievdReward } from "../../XP/XPSlice";
-// import { useDispatch } from "react-redux";
-// import { completedRewards } from "./rewardsSlice";
 
 export default function Rewards() {
-  // const dispatch = useDispatch();
   const currUser = useSelector(currentUser);
   const allRewards = currUser?.userInfo?.allRewards;
-  // const completed = useSelector(completedRewards);
-  // completed.forEach((reward) => {
-  //   dispatch(addAchievdReward(reward));
-  // });
 
   return (
     <div className="rewards-container">

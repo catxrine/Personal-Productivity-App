@@ -1,22 +1,17 @@
 import "./to-dos.scss";
 import { useSelector, useDispatch } from "react-redux";
-import { tasks, usersTodos } from "./todosSlice";
 import { nanoid } from "@reduxjs/toolkit";
 import { useState } from "react";
-// import { achievedReward } from "../rewards/rewardsSlice";
 import { currentUser, addTodos, removeTask } from "../login/loginSlice";
 import { addAchievedReward } from "../login/loginSlice";
 
 export default function Todos() {
   const dispatch = useDispatch();
-  const allTasks = useSelector(tasks);
   const currUser = useSelector(currentUser);
-
+  const todos = currUser.userInfo?.tasks || [];
   const [inputData, setInputData] = useState("");
   const [show, setShow] = useState(false);
   const [XP, setXP] = useState(0);
-
-  dispatch(usersTodos(currUser.userInfo?.tasks || []));
 
   return (
     <div className="todos-container">
@@ -43,7 +38,7 @@ export default function Todos() {
 
       {show && <p className="earnedXP">+{XP}</p>}
 
-      {allTasks?.map((task) => {
+      {todos.map((task) => {
         return (
           <div key={nanoid()}>
             <div className="task">
@@ -54,7 +49,6 @@ export default function Todos() {
               </div>
               <button
                 onClick={() => {
-                  // dispatch(achievedReward(task));
                   dispatch(addAchievedReward(task.XP));
 
                   setXP(task.XP);

@@ -14,7 +14,7 @@ export const rewardsData = [
     needed: 5,
     completed: false,
     image: "icons8-ok-100.png",
-    XP: 300,
+    XP: 400,
     id: nanoid(),
   },
   {
@@ -22,7 +22,7 @@ export const rewardsData = [
     needed: 30,
     completed: false,
     image: "icons8-ok-100.png",
-    XP: 400,
+    XP: 900,
     id: nanoid(),
   },
   {
@@ -30,7 +30,7 @@ export const rewardsData = [
     needed: 45,
     completed: false,
     image: "icons8-ok-100.png",
-    XP: 200,
+    XP: 1000,
     id: nanoid(),
   },
   {
@@ -38,14 +38,14 @@ export const rewardsData = [
     needed: 60,
     completed: false,
     image: "icons8-ok-100.png",
-    XP: 500,
+    XP: 1100,
     id: nanoid(),
   },
   {
     description: "Complete 80 tasks",
     needed: 80,
     image: "icons8-ok-100.png",
-    XP: 600,
+    XP: 1200,
     id: nanoid(),
   },
   {
@@ -53,7 +53,7 @@ export const rewardsData = [
     needed: 100,
     completed: false,
     image: "icons8-ok-100.png",
-    XP: 1000,
+    XP: 1300,
     id: nanoid(),
   },
   {
@@ -61,7 +61,7 @@ export const rewardsData = [
     needed: 130,
     completed: false,
     image: "icons8-ok-100.png",
-    XP: 600,
+    XP: 1400,
     id: nanoid(),
   },
   {
@@ -69,7 +69,7 @@ export const rewardsData = [
     needed: 160,
     completed: false,
     image: "icons8-ok-100.png",
-    XP: 120,
+    XP: 1500,
     id: nanoid(),
   },
   {
@@ -77,7 +77,7 @@ export const rewardsData = [
     needed: 190,
     completed: false,
     image: "icons8-ok-100.png",
-    XP: 110,
+    XP: 1600,
     id: nanoid(),
   },
   {
@@ -85,7 +85,7 @@ export const rewardsData = [
     needed: 220,
     completed: false,
     image: "icons8-ok-100.png",
-    XP: 150,
+    XP: 1700,
     id: nanoid(),
   },
 ];

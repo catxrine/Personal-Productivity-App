@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { canLogIn } from "./loginSlice";
 import { useNavigate } from "react-router-dom";
-// import { currentUser } from "../login/loginSlice";
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -16,8 +15,6 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [warningShowUp, setWarningShowUp] = useState(false);
 
-  // const currUser = useSelector(currentUser);
-  // console.log(currUser);
   return (
     <div className="login">
       <div className="login-container">
@@ -34,15 +31,7 @@ export default function Login() {
         <button
           onClick={() => {
             dispatch(checkForUser({ username, password }));
-
-            if (checkLogin) {
-              navigate("/tasks");
-            } else {
-              setWarningShowUp(true);
-              setTimeout(() => {
-                setWarningShowUp(false);
-              }, 1000);
-            }
+            checkLogin && navigate("/tasks");
           }}
         >
           Login
