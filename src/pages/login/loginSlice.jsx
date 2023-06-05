@@ -113,7 +113,6 @@ const usersSlice = createSlice({
     },
     exitProfile: (state) => {
       state.currentUser = "";
-      console.log(state.currentUser);
     },
   },
 });
