@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
 import "./hero-bar.scss";
+
 import { useSelector } from "react-redux";
 import { nanoid } from "@reduxjs/toolkit";
 import { allHeroData } from "./heroBarSlice";
