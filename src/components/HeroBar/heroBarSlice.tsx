@@ -5,6 +5,10 @@ const initialState = {
   heroData: heroesData,
 };
 
+type heroSlice = {
+  heroBar: typeof initialState;
+};
+
 const heroBarSlice = createSlice({
   name: "heroBar",
   initialState,
@@ -20,4 +24,4 @@ const heroBarSlice = createSlice({
 
 export default heroBarSlice.reducer;
 export const { wonHero } = heroBarSlice.actions;
-export const allHeroData = (state: any) => state.heroBar.heroData;
+export const allHeroData = (state: heroSlice) => state.heroBar.heroData;

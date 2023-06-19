@@ -50,7 +50,11 @@ const initialState = {
   canLogIn: false,
   currentUser: JSON.parse(`${localStorage.getItem("currUser")}`),
 };
-console.log(initialState.currentUser);
+
+type usersType = {
+  users: typeof initialState;
+};
+
 const usersSlice = createSlice({
   name: "users",
   initialState,
@@ -161,6 +165,7 @@ export const {
   addAchievedReward,
   exitProfile,
 } = usersSlice.actions;
-export const allUsers = (state: any) => state.users.users;
-export const canLogIn = (state: any) => state.users.canLogIn;
-export const currentUser = (state: any) => state.users.currentUser;
+export const allUsers = (state: typeof initialState) => state.users.users;
+export const canLogIn = (state: typeof initialState) => state.users.canLogIn;
+export const currentUser = (state: typeof initialState) =>
+  state.users.currentUser;
