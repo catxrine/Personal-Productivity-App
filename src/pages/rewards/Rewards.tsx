@@ -18,6 +18,7 @@ export default function Rewards({ className }: { className?: string }) {
   const allRewards = currUser?.userInfo?.allRewards;
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   return (
     <div className="rewards-container">
       <button

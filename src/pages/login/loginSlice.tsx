@@ -150,7 +150,7 @@ const usersSlice = createSlice({
     },
   },
 });
-console.log(typeof initialState.users);
+
 export default usersSlice.reducer;
 export const {
   addUser,
