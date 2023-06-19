@@ -8,11 +8,12 @@ import { wonHero } from "./heroBarSlice";
 import { useDispatch } from "react-redux";
 import { currentUser } from "../../pages/login/loginSlice";
 
-export default function HeroBar() {
+export default function HeroBar({ className }: { className?: string }) {
   const dispatch = useDispatch();
   const heroData = useSelector(allHeroData);
   const currUser = useSelector(currentUser);
   const currentXP = currUser?.userInfo?.currentXP || 0;
+
   type heroType = {
     character: string;
     image: string;

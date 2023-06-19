@@ -9,8 +9,8 @@ import { rewardsData } from "../../rewardsData";
 export default function SignIn() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [username, setUsername] = useState();
-  const [password, setPassword] = useState();
+  const [username, setUsername] = useState<string | undefined>();
+  const [password, setPassword] = useState<string | undefined>();
   const [showWarning, setShowWarning] = useState(false);
 
   return (

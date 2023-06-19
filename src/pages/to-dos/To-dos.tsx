@@ -5,13 +5,20 @@ import { useState } from "react";
 import { currentUser, addTodos, removeTask } from "../login/loginSlice";
 import { addAchievedReward } from "../login/loginSlice";
 
-export default function Todos() {
+export default function Todos({ className }: { className?: string }) {
   const dispatch = useDispatch();
   const currUser = useSelector(currentUser);
   const todos = currUser.userInfo?.tasks || [];
   const [inputData, setInputData] = useState("");
   const [show, setShow] = useState(false);
   const [XP, setXP] = useState(0);
+
+  type todosType = {
+    XP: number;
+    completed: boolean;
+    id: string;
+    title: string;
+  };
 
   return (
     <div className="todos-container">
@@ -38,7 +45,7 @@ export default function Todos() {
 
       {show && <p className="earnedXP">+{XP}</p>}
 
-      {todos.map((task) => {
+      {todos.map((task: todosType) => {
         return (
           <div key={nanoid()}>
             <div className="task">

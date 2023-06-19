@@ -11,7 +11,7 @@ export default function Layout() {
       <div>
         <HeroBar className="hero-bar" />
       </div>
-      <Xp className="XP" />
+      <Xp />
 
       <div className="wrapper">
         <Rewards className="rewards" />
