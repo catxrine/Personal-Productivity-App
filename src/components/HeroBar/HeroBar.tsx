@@ -1,12 +1,11 @@
 import { Outlet } from "react-router-dom";
-import "./hero-bar.scss";
-
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { nanoid } from "@reduxjs/toolkit";
 import { allHeroData } from "./heroBarSlice";
 import { wonHero } from "./heroBarSlice";
-import { useDispatch } from "react-redux";
 import { currentUser } from "../../pages/login/loginSlice";
+import "./hero-bar.scss";
 
 export default function HeroBar({ className }: { className?: string }) {
   const dispatch = useDispatch();
@@ -14,7 +13,7 @@ export default function HeroBar({ className }: { className?: string }) {
   const currUser = useSelector(currentUser);
   const currentXP = currUser?.userInfo?.currentXP || 0;
 
-  type heroType = {
+  interface HeroType {
     character: string;
     image: string;
     levelNeeded: number;
@@ -22,12 +21,12 @@ export default function HeroBar({ className }: { className?: string }) {
     current: boolean;
     XP: number;
     id: string;
-  };
+  }
 
   return (
     <div>
       <div className="heroes">
-        {heroData?.map((hero: heroType) => {
+        {heroData?.map((hero: HeroType) => {
           if (hero.XP <= currentXP) {
             dispatch(wonHero(hero));
           }

@@ -1,9 +1,9 @@
-import "./to-dos.scss";
-import { useSelector, useDispatch } from "react-redux";
-import { nanoid } from "@reduxjs/toolkit";
 import { useState } from "react";
-import { currentUser, addTodos, removeTask } from "../login/loginSlice";
+import { nanoid } from "@reduxjs/toolkit";
+import { useSelector, useDispatch } from "react-redux";
 import { addAchievedReward } from "../login/loginSlice";
+import { currentUser, addTodos, removeTask } from "../login/loginSlice";
+import "./to-dos.scss";
 
 export default function Todos({ className }: { className?: string }) {
   const dispatch = useDispatch();
@@ -13,7 +13,7 @@ export default function Todos({ className }: { className?: string }) {
   const [show, setShow] = useState(false);
   const [XP, setXP] = useState(0);
 
-  type todosType = {
+  type TodosType = {
     XP: number;
     completed: boolean;
     id: string;
@@ -45,7 +45,7 @@ export default function Todos({ className }: { className?: string }) {
 
       {show && <p className="earnedXP">+{XP}</p>}
 
-      {todos.map((task: todosType) => {
+      {todos.map((task: TodosType) => {
         return (
           <div key={nanoid()}>
             <div className="task">

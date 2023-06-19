@@ -1,10 +1,10 @@
-import "./login.scss";
-import { Link } from "react-router-dom";
-import { checkForUser } from "./loginSlice";
-import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import { canLogIn } from "./loginSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { checkForUser } from "./loginSlice";
+import { canLogIn } from "./loginSlice";
+import "./login.scss";
 
 export default function Login() {
   const dispatch = useDispatch();

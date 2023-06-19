@@ -1,10 +1,10 @@
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { addUser } from "../login/loginSlice";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { nanoid } from "@reduxjs/toolkit";
-import "./signIn.scss";
+import { addUser } from "../login/loginSlice";
 import { rewardsData } from "../../rewardsData";
+import "./signIn.scss";
 
 export default function SignIn() {
   const navigate = useNavigate();

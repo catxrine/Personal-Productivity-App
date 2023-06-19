@@ -1,12 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { RootState } from "../../store";
 import { heroesData } from "../data";
 
 const initialState = {
   heroData: heroesData,
-};
-
-type heroSlice = {
-  heroBar: typeof initialState;
 };
 
 const heroBarSlice = createSlice({
@@ -24,4 +21,4 @@ const heroBarSlice = createSlice({
 
 export default heroBarSlice.reducer;
 export const { wonHero } = heroBarSlice.actions;
-export const allHeroData = (state: heroSlice) => state.heroBar.heroData;
+export const allHeroData = (state: RootState) => state.heroBar.heroData;

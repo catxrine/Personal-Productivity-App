@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { RootState } from "../../store";
 import { users } from "../../users";
 
 export function saveUserToLocalStorage(data: object) {
@@ -11,7 +12,7 @@ export function saveUserToLocalStorage(data: object) {
   return users;
 }
 
-type userTypes = {
+interface UserTypes {
   username: string;
   password: string;
   id: number;
@@ -22,21 +23,16 @@ type userTypes = {
     tasks: [];
     allRewards: object[];
   };
-};
-// type stateTypes = {
-//   users: [];
-//   canLogIn: boolean;
-//   currentUser: userTypes | string;
-// };
+}
 
-type taskTypes = {
+type TaskTypes = {
   title: string;
   XP: number;
   id: number;
   completed: boolean;
 };
 
-type rewardsTypes = {
+type RewardsTypes = {
   description: string;
   needed: number;
   completed: boolean;
@@ -51,10 +47,6 @@ const initialState = {
   currentUser: JSON.parse(`${localStorage.getItem("currUser")}`),
 };
 
-type usersType = {
-  users: typeof initialState;
-};
-
 const usersSlice = createSlice({
   name: "users",
   initialState,
@@ -66,7 +58,7 @@ const usersSlice = createSlice({
       }
     },
     checkForUser: (state, action) => {
-      state.users?.map((user: userTypes): void => {
+      state.users?.map((user: UserTypes): void => {
         if (
           user.username === action.payload.username &&
           user.password === action.payload.password
@@ -83,7 +75,7 @@ const usersSlice = createSlice({
         ...state.currentUser.userInfo.tasks,
         action.payload,
       ];
-      state.users.map((user: userTypes) => {
+      state.users.map((user: UserTypes) => {
         if (user.id === state.currentUser.id) {
           user.userInfo.tasks = state.currentUser.userInfo.tasks;
 
@@ -94,7 +86,7 @@ const usersSlice = createSlice({
     },
     addXPtoUser: (state, action) => {
       state.currentUser.userInfo.currentXP += action.payload;
-      state.users.map((user: userTypes) => {
+      state.users.map((user: UserTypes) => {
         if (user.id === state.currentUser.id) {
           user.userInfo.currentXP = state.currentUser.userInfo.currentXP;
 
@@ -106,9 +98,9 @@ const usersSlice = createSlice({
     removeTask: (state, action) => {
       state.currentUser.userInfo.tasks =
         state.currentUser.userInfo.tasks.filter(
-          (task: taskTypes) => task.id !== action.payload
+          (task: TaskTypes) => task.id !== action.payload
         );
-      state.users.map((user: userTypes) => {
+      state.users.map((user: UserTypes) => {
         if (user.id === state.currentUser.id) {
           user.userInfo.tasks = state.currentUser.userInfo.tasks;
 
@@ -122,7 +114,7 @@ const usersSlice = createSlice({
       state.currentUser.userInfo.currentXP += action.payload;
       state.currentUser.userInfo.completed += 1;
 
-      state.currentUser.userInfo.allRewards.forEach((reward: rewardsTypes) => {
+      state.currentUser.userInfo.allRewards.forEach((reward: RewardsTypes) => {
         if (state.currentUser.userInfo.completed >= reward.needed) {
           reward.completed = true;
           state.currentUser.userInfo.currentXP += reward.XP;
@@ -131,11 +123,11 @@ const usersSlice = createSlice({
 
         state.currentUser.userInfo.allRewards =
           state.currentUser.userInfo.allRewards.filter(
-            (reward: rewardsTypes) => reward.completed !== true
+            (reward: RewardsTypes) => reward.completed !== true
           );
       });
 
-      state.users.map((user: userTypes) => {
+      state.users.map((user: UserTypes) => {
         if (user.id === state.currentUser.id) {
           user.userInfo.currentXP = state.currentUser.userInfo.currentXP;
           user.userInfo.completed = state.currentUser.userInfo.completed;
@@ -165,7 +157,6 @@ export const {
   addAchievedReward,
   exitProfile,
 } = usersSlice.actions;
-export const allUsers = (state: typeof initialState) => state.users.users;
-export const canLogIn = (state: typeof initialState) => state.users.canLogIn;
-export const currentUser = (state: typeof initialState) =>
-  state.users.currentUser;
+export const allUsers = (state: RootState) => state.users.users;
+export const canLogIn = (state: RootState) => state.users.canLogIn;
+export const currentUser = (state: RootState) => state.users.currentUser;

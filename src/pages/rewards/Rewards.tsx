@@ -1,11 +1,12 @@
-import "./rewards.scss";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { nanoid } from "@reduxjs/toolkit";
 import { currentUser } from "../login/loginSlice";
-import { useSelector, useDispatch } from "react-redux";
 import { exitProfile } from "../login/loginSlice";
-import { useNavigate } from "react-router-dom";
+import "./rewards.scss";
+
 export default function Rewards({ className }: { className?: string }) {
-  type rewardsTypes = {
+  type RewardsTypes = {
     description: string;
     needed: number;
     completed: boolean;
@@ -31,7 +32,7 @@ export default function Rewards({ className }: { className?: string }) {
       </button>
 
       <h2 className="label">Rewards</h2>
-      {allRewards?.map((reward: rewardsTypes) => {
+      {allRewards?.map((reward: RewardsTypes) => {
         return (
           <div key={nanoid()}>
             <div className="reward">

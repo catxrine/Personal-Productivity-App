@@ -1,8 +1,8 @@
-import "./calendar.scss";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import "./calendar.scss";
 
 export default function Calendar({ className }: { className?: string }) {
   return (
