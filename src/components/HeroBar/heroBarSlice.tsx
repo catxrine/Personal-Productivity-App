@@ -1,16 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { heroesData } from "../data";
 
-// type heroType = {
-//   character: string;
-//   image: string;
-//   levelNeeded: number;
-//   locked: boolean;
-//   current: boolean;
-//   XP: number;
-//   id: string;
-// };
-
 const initialState = {
   heroData: heroesData,
 };
