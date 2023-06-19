@@ -1,6 +1,6 @@
 import { nanoid } from "@reduxjs/toolkit";
 
-export const rewardsData = [
+export const rewardsData: object[] = [
   {
     description: "Complete 2 tasks",
     needed: 2,

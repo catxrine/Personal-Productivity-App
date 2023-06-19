@@ -1,5 +1,5 @@
 import { nanoid } from "@reduxjs/toolkit";
-export const heroesData = [
+export const heroesData: object[] = [
   {
     character: "Bug",
     image: "death.png",
