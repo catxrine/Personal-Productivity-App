@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { users } from "../../users";
-// import { canLogIn } from './loginSlice';
 
 export function saveUserToLocalStorage(data: object) {
   let users = JSON.parse(`${localStorage.getItem("usersData")}`) || [];
@@ -46,18 +45,12 @@ type rewardsTypes = {
   id: number;
 };
 
-type sliceTypes = {
-  users: userTypes[];
-  canLogIn: boolean;
-  currentUser: userTypes;
-};
-
-const initialState: sliceTypes = {
+const initialState = {
   users: saveUserToLocalStorage(users),
   canLogIn: false,
   currentUser: JSON.parse(`${localStorage.getItem("currUser")}`),
 };
-
+console.log(initialState.currentUser);
 const usersSlice = createSlice({
   name: "users",
   initialState,
@@ -98,7 +91,7 @@ const usersSlice = createSlice({
     addXPtoUser: (state, action) => {
       state.currentUser.userInfo.currentXP += action.payload;
       state.users.map((user: userTypes) => {
-        if (user.id === currentUser.id) {
+        if (user.id === state.currentUser.id) {
           user.userInfo.currentXP = state.currentUser.userInfo.currentXP;
 
           localStorage.setItem("usersData", JSON.stringify(state.users));

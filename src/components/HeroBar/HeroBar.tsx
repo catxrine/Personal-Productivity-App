@@ -13,10 +13,20 @@ export default function HeroBar() {
   const heroData = useSelector(allHeroData);
   const currUser = useSelector(currentUser);
   const currentXP = currUser?.userInfo?.currentXP || 0;
+  type heroType = {
+    character: string;
+    image: string;
+    levelNeeded: number;
+    locked: boolean;
+    current: boolean;
+    XP: number;
+    id: string;
+  };
+
   return (
     <div>
       <div className="heroes">
-        {heroData?.map((hero) => {
+        {heroData?.map((hero: heroType) => {
           if (hero.XP <= currentXP) {
             dispatch(wonHero(hero));
           }

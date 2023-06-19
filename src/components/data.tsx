@@ -1,5 +1,16 @@
 import { nanoid } from "@reduxjs/toolkit";
-export const heroesData: object[] = [
+
+type heroType = {
+  character: string;
+  image: string;
+  levelNeeded: number;
+  locked: boolean;
+  current: boolean;
+  XP: number;
+  id: string;
+};
+
+export const heroesData: heroType[] = [
   {
     character: "Bug",
     image: "death.png",
